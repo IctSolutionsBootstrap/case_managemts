@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono, Noto_Sans_Ethiopic } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n/context'
+import { AuthProvider } from '@/lib/auth/context'
 import './globals.css'
 
 const _geist = Geist({ 
@@ -57,9 +58,11 @@ export default function RootLayout({
   return (
     <html lang="am" suppressHydrationWarning>
       <body className={`${_geist.variable} ${_geistMono.variable} ${_notoEthiopic.variable} font-sans antialiased`}>
-        <I18nProvider>
-          {children}
-        </I18nProvider>
+        <AuthProvider>
+          <I18nProvider>
+            {children}
+          </I18nProvider>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>
