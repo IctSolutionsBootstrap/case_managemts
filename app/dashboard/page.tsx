@@ -44,7 +44,6 @@ export default function DashboardPage() {
     case 'prosecutor':
       return <ProsecutorDashboard />
     case 'judge':
-    case 'court_clerk':
       return <JudgeDashboard />
     case 'prison':
       return <PrisonDashboard />
@@ -52,7 +51,7 @@ export default function DashboardPage() {
       return <LawyerDashboard />
     case 'community':
       return <CommunityDashboard />
-    case 'bureau_admin':
+    case 'bureau':
       return <BureauDashboard />
     case 'document_officer':
       return <DocumentOfficerDashboard />
