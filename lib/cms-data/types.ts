@@ -251,6 +251,19 @@ export interface LegalDocument {
   tags: string[]
 }
 
+// Hearing
+export interface Hearing {
+  id: string
+  caseId: string
+  hearingType: 'preliminary' | 'trial' | 'sentencing' | 'appeal' | 'bail'
+  scheduledDate: Date
+  courtRoom: string
+  judgeId: string
+  status: 'scheduled' | 'completed' | 'postponed' | 'cancelled'
+  notes?: string
+  outcome?: string
+}
+
 // Dashboard Statistics
 export interface DashboardStats {
   totalCases: number

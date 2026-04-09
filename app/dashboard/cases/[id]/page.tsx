@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { mockCases, mockDocuments, mockHearings, mockCaseTimeline, mockUsers } from '@/lib/cms-data/mock-data'
+import type { CriminalCase } from '@/lib/cms-data/types'
 import { 
   ArrowLeft, FileText, Calendar, Users, Clock, AlertTriangle, 
   CheckCircle, XCircle, Send, Upload, Gavel, Scale, Shield

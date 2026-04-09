@@ -725,3 +725,205 @@ export function getCasesForUser(userId: string, role: string): CriminalCase[] {
       return []
   }
 }
+
+// ==========================================
+// MOCK USERS
+// ==========================================
+export const mockUsers = [
+  { id: 'police-001', name: 'Ahmed Hassan', role: 'police', department: 'Investigation Unit' },
+  { id: 'police-002', name: 'Abdi Mohammed', role: 'police', department: 'Patrol Unit' },
+  { id: 'prosecutor-001', name: 'Fatima Abdi', role: 'prosecutor', department: 'Prosecution Office' },
+  { id: 'prosecutor-002', name: 'Mohamed Yusuf', role: 'prosecutor', department: 'Prosecution Office' },
+  { id: 'judge-001', name: 'Ibrahim Farah', role: 'judge', court: 'Jijiga High Court' },
+  { id: 'judge-002', name: 'Amina Hassan', role: 'judge', court: 'Jijiga District Court' },
+  { id: 'prison-001', name: 'Halima Omar', role: 'prison', facility: 'Jijiga Prison' },
+  { id: 'lawyer-001', name: 'Omar Ali', role: 'lawyer', firm: 'Public Defender Office' },
+  { id: 'bureau-001', name: 'Hassan Abdi', role: 'bureau', department: 'Administration' },
+]
+
+// ==========================================
+// MOCK HEARINGS
+// ==========================================
+export const mockHearings: Hearing[] = [
+  {
+    id: 'hearing-001',
+    caseId: 'case-001',
+    hearingType: 'preliminary',
+    scheduledDate: new Date('2026-04-15T09:00:00'),
+    courtRoom: 'Court Room A',
+    judgeId: 'judge-001',
+    status: 'scheduled',
+    notes: 'Initial hearing for theft case',
+  },
+  {
+    id: 'hearing-002',
+    caseId: 'case-002',
+    hearingType: 'trial',
+    scheduledDate: new Date('2026-04-10T10:00:00'),
+    courtRoom: 'Court Room B',
+    judgeId: 'judge-002',
+    status: 'completed',
+    notes: 'Trial hearing completed',
+    outcome: 'Guilty verdict issued',
+  },
+  {
+    id: 'hearing-003',
+    caseId: 'case-003',
+    hearingType: 'sentencing',
+    scheduledDate: new Date('2026-04-20T14:00:00'),
+    courtRoom: 'Court Room A',
+    judgeId: 'judge-001',
+    status: 'scheduled',
+    notes: 'Sentencing hearing',
+  },
+]
+
+// ==========================================
+// MOCK DOCUMENTS
+// ==========================================
+export const mockDocuments = [
+  {
+    id: 'doc-001',
+    caseId: 'case-001',
+    title: 'FIR Report',
+    documentType: 'fir_report',
+    uploadedBy: 'police-001',
+    uploadedByRole: 'Police',
+    uploadedAt: new Date('2026-04-01T10:30:00'),
+    fileSize: '245 KB',
+    isVerified: true,
+  },
+  {
+    id: 'doc-002',
+    caseId: 'case-001',
+    title: 'Witness Statement - Eyewitness',
+    documentType: 'witness_statement',
+    uploadedBy: 'police-001',
+    uploadedByRole: 'Police',
+    uploadedAt: new Date('2026-04-03T09:15:00'),
+    fileSize: '128 KB',
+    isVerified: true,
+  },
+  {
+    id: 'doc-003',
+    caseId: 'case-002',
+    title: 'Medical Report',
+    documentType: 'medical_report',
+    uploadedBy: 'prosecutor-001',
+    uploadedByRole: 'Prosecutor',
+    uploadedAt: new Date('2026-03-20T14:00:00'),
+    fileSize: '512 KB',
+    isVerified: true,
+  },
+  {
+    id: 'doc-004',
+    caseId: 'case-002',
+    title: 'Charge Sheet',
+    documentType: 'charge_sheet',
+    uploadedBy: 'prosecutor-001',
+    uploadedByRole: 'Prosecutor',
+    uploadedAt: new Date('2026-03-22T11:00:00'),
+    fileSize: '320 KB',
+    isVerified: true,
+  },
+  {
+    id: 'doc-005',
+    caseId: 'case-003',
+    title: 'Police Investigation Report',
+    documentType: 'investigation_report',
+    uploadedBy: 'police-002',
+    uploadedByRole: 'Police',
+    uploadedAt: new Date('2026-02-15T16:30:00'),
+    fileSize: '890 KB',
+    isVerified: true,
+  },
+]
+
+// ==========================================
+// MOCK CASE TIMELINE
+// ==========================================
+export const mockCaseTimeline = [
+  {
+    id: 'timeline-001',
+    caseId: 'case-001',
+    eventType: 'fir_registered',
+    description: 'FIR registered for theft of livestock',
+    performedBy: 'police-001',
+    performedByRole: 'Police',
+    timestamp: new Date('2026-04-01T10:00:00'),
+  },
+  {
+    id: 'timeline-002',
+    caseId: 'case-001',
+    eventType: 'investigation_started',
+    description: 'Investigation initiated by Officer Ahmed Hassan',
+    performedBy: 'police-001',
+    performedByRole: 'Police',
+    timestamp: new Date('2026-04-01T11:00:00'),
+  },
+  {
+    id: 'timeline-003',
+    caseId: 'case-001',
+    eventType: 'evidence_collected',
+    description: 'Physical evidence collected - 3 goats recovered',
+    performedBy: 'police-001',
+    performedByRole: 'Police',
+    timestamp: new Date('2026-04-02T16:00:00'),
+  },
+  {
+    id: 'timeline-004',
+    caseId: 'case-002',
+    eventType: 'fir_registered',
+    description: 'FIR registered for assault case',
+    performedBy: 'police-002',
+    performedByRole: 'Police',
+    timestamp: new Date('2026-03-15T08:00:00'),
+  },
+  {
+    id: 'timeline-005',
+    caseId: 'case-002',
+    eventType: 'sent_to_prosecutor',
+    description: 'Case file sent to Prosecution Office',
+    performedBy: 'police-002',
+    performedByRole: 'Police',
+    timestamp: new Date('2026-03-18T14:00:00'),
+  },
+  {
+    id: 'timeline-006',
+    caseId: 'case-002',
+    eventType: 'charges_filed',
+    description: 'Charges filed against defendant',
+    performedBy: 'prosecutor-001',
+    performedByRole: 'Prosecutor',
+    timestamp: new Date('2026-03-22T11:00:00'),
+  },
+  {
+    id: 'timeline-007',
+    caseId: 'case-002',
+    eventType: 'trial_started',
+    description: 'Trial commenced at Jijiga District Court',
+    performedBy: 'judge-002',
+    performedByRole: 'Judge',
+    timestamp: new Date('2026-04-10T10:00:00'),
+  },
+]
+
+// ==========================================
+// ALIAS EXPORTS (for backward compatibility)
+// ==========================================
+// Flattened view of cases for pages that expect simpler structure
+export const mockCases = criminalCases.map(c => ({
+  ...c,
+  title: c.fir.crimeDescription.substring(0, 60) + (c.fir.crimeDescription.length > 60 ? '...' : ''),
+  description: c.fir.crimeDescription,
+  crimeType: c.fir.crimeType,
+  location: c.fir.incidentLocation,
+  district: c.fir.incidentLocation.split(',')[0] || 'Jijiga',
+  priority: c.legalTimers.some(t => t.isViolated) ? 'urgent' : 
+            c.legalTimers.some(t => t.remainingHours < 24) ? 'high' : 'normal',
+  isPublic: ['awaiting_trial', 'in_trial', 'sentenced', 'execution'].includes(c.status),
+  assignedPoliceId: c.assignedOfficer,
+  assignedProsecutorId: c.assignedProsecutor,
+  assignedJudgeId: c.assignedJudge,
+  assignedLawyerId: c.assignedLawyer,
+}))
