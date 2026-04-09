@@ -4,12 +4,14 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 import { Locale, defaultLocale, localeConfigs, LocaleConfig } from './types'
 import enTranslations from './translations/en'
 import amTranslations from './translations/am'
+import soTranslations from './translations/so'
 
 type TranslationKey = keyof typeof enTranslations
 
 const translations: Record<Locale, typeof enTranslations> = {
   en: enTranslations,
   am: amTranslations,
+  so: soTranslations,
 }
 
 interface I18nContextType {
@@ -28,7 +30,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const savedLocale = localStorage.getItem(LOCALE_STORAGE_KEY) as Locale | null
-    if (savedLocale && (savedLocale === 'en' || savedLocale === 'am')) {
+    if (savedLocale && (savedLocale === 'en' || savedLocale === 'am' || savedLocale === 'so')) {
       setLocaleState(savedLocale)
     }
   }, [])

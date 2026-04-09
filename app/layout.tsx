@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono, Noto_Sans_Ethiopic } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n/context'
+import { AuthProvider } from '@/lib/auth/context'
 import './globals.css'
 
 const _geist = Geist({ 
@@ -19,11 +20,11 @@ const _notoEthiopic = Noto_Sans_Ethiopic({
 })
 
 export const metadata: Metadata = {
-  title: 'Ministry of Justice - Jijiga | የፍትህ ሚኒስቴር - ጅጅጋ',
-  description: 'Public Portal for Case Management and Citizen Services - Somali Regional State Ministry of Justice',
+  title: 'Jijiga Regional Bureau of Justice - Case Management System',
+  description: 'Integrated Case Management System for the Jijiga Regional Bureau of Justice - Somali Regional State, Ethiopia',
   generator: 'v0.app',
-  keywords: ['Ministry of Justice', 'Jijiga', 'Somali Region', 'Case Management', 'Legal Services', 'Ethiopia'],
-  authors: [{ name: 'Ministry of Justice - Somali Regional State' }],
+  keywords: ['Bureau of Justice', 'Jijiga', 'Somali Region', 'Case Management', 'Legal Services', 'Ethiopia', 'FIR', 'Court'],
+  authors: [{ name: 'Jijiga Regional Bureau of Justice' }],
   icons: {
     icon: [
       {
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#d946a5',
+  themeColor: '#1a365d',
   width: 'device-width',
   initialScale: 1,
 }
@@ -56,10 +57,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="am" suppressHydrationWarning>
-      <body className={`${_geist.variable} ${_geistMono.variable} ${_notoEthiopic.variable} font-sans antialiased`}>
-        <I18nProvider>
-          {children}
-        </I18nProvider>
+      <body 
+        className={`${_geist.variable} ${_geistMono.variable} ${_notoEthiopic.variable} font-sans antialiased`}
+        suppressHydrationWarning
+      >
+        <AuthProvider>
+          <I18nProvider>
+            {children}
+          </I18nProvider>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>

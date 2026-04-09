@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'am'
+export type Locale = 'en' | 'am' | 'so'
 
 export type TranslationKey = keyof typeof import('./translations/en').default
 
@@ -28,7 +28,15 @@ export const localeConfigs: Record<Locale, LocaleConfig> = {
     dateFormat: 'DD/MM/YYYY',
     calendarType: 'ethiopian',
   },
+  so: {
+    code: 'so',
+    name: 'Somali',
+    nativeName: 'Soomaali',
+    direction: 'ltr',
+    dateFormat: 'DD/MM/YYYY',
+    calendarType: 'gregorian',
+  },
 }
 
 export const defaultLocale: Locale = 'am'
-export const supportedLocales: Locale[] = ['en', 'am']
+export const supportedLocales: Locale[] = ['en', 'am', 'so']

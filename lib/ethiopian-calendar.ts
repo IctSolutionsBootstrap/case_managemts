@@ -14,7 +14,7 @@ export interface GregorianDate {
   day: number
 }
 
-const ethiopianMonths = {
+const ethiopianMonths: Record<string, string[]> = {
   en: [
     'Meskerem', 'Tikimt', 'Hidar', 'Tahsas', 'Tir', 'Yekatit',
     'Megabit', 'Miazia', 'Ginbot', 'Sene', 'Hamle', 'Nehase', 'Pagume'
@@ -22,12 +22,17 @@ const ethiopianMonths = {
   am: [
     'መስከረም', 'ጥቅምት', 'ህዳር', 'ታህሳስ', 'ጥር', 'የካቲት',
     'መጋቢት', 'ሚያዝያ', 'ግንቦት', 'ሰኔ', 'ሃምሌ', 'ነሐሴ', 'ጳጉሜ'
+  ],
+  so: [
+    'Meskerem', 'Tikimt', 'Hidar', 'Tahsas', 'Tir', 'Yekatit',
+    'Megabit', 'Miazia', 'Ginbot', 'Sene', 'Hamle', 'Nehase', 'Pagume'
   ]
 }
 
-const ethiopianDays = {
+const ethiopianDays: Record<string, string[]> = {
   en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  am: ['እሁድ', 'ሰኞ', 'ማክሰኞ', 'ረቡዕ', 'ሃሙስ', 'አርብ', 'ቅዳሜ']
+  am: ['እሁድ', 'ሰኞ', 'ማክሰኞ', 'ረቡዕ', 'ሃሙስ', 'አርብ', 'ቅዳሜ'],
+  so: ['Axad', 'Isniin', 'Talaado', 'Arbaco', 'Khamiis', 'Jimco', 'Sabti']
 }
 
 // Check if Ethiopian year is a leap year
@@ -126,10 +131,11 @@ export function getCurrentEthiopianDate(): EthiopianDate {
 // Format Ethiopian date
 export function formatEthiopianDate(
   ethDate: EthiopianDate,
-  locale: 'en' | 'am' = 'am',
+  locale: string = 'am',
   format: 'short' | 'long' | 'full' = 'long'
 ): string {
-  const monthName = ethiopianMonths[locale][ethDate.month - 1]
+  const safeLocale = ethiopianMonths[locale] ? locale : 'en'
+  const monthName = ethiopianMonths[safeLocale][ethDate.month - 1]
   
   if (format === 'short') {
     return `${ethDate.day}/${ethDate.month}/${ethDate.year}`
@@ -137,7 +143,7 @@ export function formatEthiopianDate(
   
   if (format === 'full') {
     const gregDate = ethiopianToGregorian(ethDate)
-    const dayOfWeek = ethiopianDays[locale][gregDate.getDay()]
+    const dayOfWeek = ethiopianDays[safeLocale][gregDate.getDay()]
     return `${dayOfWeek}፣ ${monthName} ${ethDate.day}፣ ${ethDate.year}`
   }
   
@@ -145,18 +151,21 @@ export function formatEthiopianDate(
 }
 
 // Get month name
-export function getEthiopianMonthName(month: number, locale: 'en' | 'am' = 'am'): string {
-  return ethiopianMonths[locale][month - 1] || ''
+export function getEthiopianMonthName(month: number, locale: string = 'am'): string {
+  const safeLocale = ethiopianMonths[locale] ? locale : 'en'
+  return ethiopianMonths[safeLocale][month - 1] || ''
 }
 
 // Get all month names
-export function getEthiopianMonthNames(locale: 'en' | 'am' = 'am'): string[] {
-  return ethiopianMonths[locale]
+export function getEthiopianMonthNames(locale: string = 'am'): string[] {
+  const safeLocale = ethiopianMonths[locale] ? locale : 'en'
+  return ethiopianMonths[safeLocale]
 }
 
 // Get day name
-export function getEthiopianDayName(dayOfWeek: number, locale: 'en' | 'am' = 'am'): string {
-  return ethiopianDays[locale][dayOfWeek] || ''
+export function getEthiopianDayName(dayOfWeek: number, locale: string = 'am'): string {
+  const safeLocale = ethiopianDays[locale] ? locale : 'en'
+  return ethiopianDays[safeLocale][dayOfWeek] || ''
 }
 
 // Get days in Ethiopian month
@@ -169,7 +178,7 @@ export function getDaysInEthiopianMonth(year: number, month: number): number {
 }
 
 // Format current date for display
-export function formatCurrentDate(locale: 'en' | 'am' = 'am'): {
+export function formatCurrentDate(locale: string = 'am'): {
   ethiopian: string
   gregorian: string
 } {
@@ -191,3 +200,4 @@ export function formatCurrentDate(locale: 'en' | 'am' = 'am'): {
     gregorian: gregorianFormatted
   }
 }
+

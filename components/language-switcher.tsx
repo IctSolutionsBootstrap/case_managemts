@@ -36,6 +36,13 @@ export function LanguageSwitcher() {
           <span className="mr-2">EN</span>
           English
         </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => setLocale('so')}
+          className={locale === 'so' ? 'bg-accent' : ''}
+        >
+          <span className="mr-2">SO</span>
+          Soomaali
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
